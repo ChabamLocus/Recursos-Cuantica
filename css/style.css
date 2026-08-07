@@ -414,6 +414,16 @@ button { font-family: inherit; cursor: pointer; }
   display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
 }
 .site-footer .foot-left { font-size: 12.5px; color: var(--text-soft); }
+.foot-events {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  font-size: 12.5px;
+}
+.foot-events .foot-events-label {
+  font-weight: 800; text-transform: uppercase; letter-spacing: .04em; font-size: 10.5px;
+  color: var(--text-soft); margin-right: 2px;
+}
+.foot-events a { color: var(--text-soft); font-weight: 600; transition: color .15s; }
+.foot-events a:hover { color: var(--water); text-decoration: underline; }
 .site-footer .initiatives-link {
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 13px; font-weight: 700; color: var(--sage-deep);
