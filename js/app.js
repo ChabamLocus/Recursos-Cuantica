@@ -254,7 +254,7 @@
       nextHref: next ? `#/semana/${next.dia}` : "",
       prevDisabled: !prev,
       nextDisabled: !next,
-      label: `Día ${dia.dia} de 7`,
+      label: `Día ${dia.dia} de ${semanaCurso.length}`,
     };
 
     $page.innerHTML = `
@@ -653,9 +653,15 @@
     }, 220);
   });
 
-  /* ---------------- Iniciativas (footer) ---------------- */
+  /* ---------------- Iniciativas y Eventos (footer) ---------------- */
 
   document.getElementById("iniciativasLink").href = iniciativas.url;
+
+  document.getElementById("footEvents").innerHTML =
+    `<span class="foot-events-label">Próximos eventos</span>` +
+    eventosProximos
+      .map((ev) => `<a href="${esc(ev.url)}" target="_self">${esc(ev.nombre)}</a>`)
+      .join('<span style="opacity:.4;">·</span>');
 
   /* ---------------- Init ---------------- */
 
