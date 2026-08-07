@@ -25,6 +25,13 @@ const iniciativas = {
   url: "https://dicu.com.mx",
 };
 
+// Enlaces a otras escuelas/eventos externos, también en el footer (no son categoría)
+const eventosProximos = [
+  { nombre: "Computación Cuántica — ICTP-SAIFR 2026", url: "https://www.ictp-saifr.org/3qcs2026/" },
+  { nombre: "Simulación en la era NISQ — ICTP-SAIFR", url: "https://www.ictp-saifr.org/sqsnisq2026/" },
+  { nombre: "Quantiki", url: "https://www.quantiki.org/" },
+];
+
 
 /* ------------------------------------------------------------
    1. MEDIOS OFICIALES
@@ -60,8 +67,9 @@ const mediosOficiales = [
 /* ------------------------------------------------------------
    2. SEMANA DE CURSO
    ------------------------------------------------------------
-   Estructura pensada para 7 días. Los días 5, 6 y 7 se dejan
-   como "próximamente" hasta tener archivos reales.
+   El curso tiene 5 días con contenido. Para agregar un día 6 o 7
+   en el futuro, solo añade un nuevo objeto { dia, disponible, archivos }
+   al final de este array.
    tipo: "notebook" | "pdf"
    Placeholder de ruta: reemplazar cuando subas los archivos a
    /assets/dia{N}/
@@ -104,11 +112,19 @@ const semanaCurso = [
     archivos: [
       { nombre: "CC_UNAM_04_Algoritmos_Cuánticos_II.ipynb", tipo: "notebook", tema: "Algoritmos cuánticos II", ruta: "assets/dia4/CC_UNAM_04_Algoritmos_Cuanticos_II.ipynb" },
       { nombre: "CC_UNAM_04_Optimización_Cuántica.ipynb", tipo: "notebook", tema: "Optimización cuántica", ruta: "assets/dia4/CC_UNAM_04_Optimizacion_Cuantica.ipynb" },
+      { nombre: "AlgoritmoGrover.pdf", tipo: "pdf", tema: "Algoritmo de Grover", ruta: "https://raw.githubusercontent.com/LAPI-UNAM/quinta_escuela_de_computo_cuantico/main/AlgoritmoGrover.pdf" },
+      { nombre: "Algortimo_de_Deutsh_Joza.pdf", tipo: "pdf", tema: "Algoritmo de Deutsch-Jozsa", ruta: "https://raw.githubusercontent.com/LAPI-UNAM/quinta_escuela_de_computo_cuantico/main/Algortimo_de_Deutsh_Joza.pdf" },
     ],
   },
-  { dia: 5, disponible: false, archivos: [] },
-  { dia: 6, disponible: false, archivos: [] },
-  { dia: 7, disponible: false, archivos: [] },
+  {
+    dia: 5,
+    disponible: true,
+    archivos: [
+      { nombre: "CC_UNAM_05_Quantum_Machine_Learning.ipynb", tipo: "notebook", tema: "Quantum Machine Learning", ruta: "assets/dia5/CC_UNAM_05_Quantum_Machine_Learning.ipynb" },
+      { nombre: "5ECQ_Data_Reuploading_Quantum_Neural_Networks.ipynb", tipo: "notebook", tema: "Redes neuronales cuánticas", ruta: "assets/dia5/5ECQ_Data_Reuploading_Quantum_Neural_Networks.ipynb" },
+      { nombre: "5ECQ_Hybrid_Quantum_Convolutional_Neural_Networks.ipynb", tipo: "notebook", tema: "Redes convolucionales híbridas", ruta: "assets/dia5/5ECQ_Hybrid_Quantum_Convolutional_Neural_Networks.ipynb" },
+    ],
+  },
 ];
 
 
@@ -163,6 +179,7 @@ const CAT = {
   FUNDAMENTOS: "Fundamentos de Computación Cuántica",
   ALGORITMOS: "Algoritmos Cuánticos",
   QUIMICA: "Química y Simulación Cuántica",
+  IA_ML: "Inteligencia Artificial y Machine Learning",
   HARDWARE: "Hardware y Qubits",
   FRAMEWORKS: "Frameworks y Herramientas",
   SEGURIDAD: "Comunicación y Seguridad",
@@ -256,7 +273,48 @@ const recursos = [
     enlaces: [{ etiqueta: "Descargar PDF", url: "assets/recursos/Medición.pdf" }],
   },
 
+  {
+    id: "REC-CETTO-DELAPENA-01",
+    titulo: "Quantum Mechanics: A Physical Approach",
+    autor: "Ana María Cetto, Luis de la Peña",
+    tipo: "libro",
+    categorias: [CAT.FUNDAMENTOS],
+    ponenteRef: null,
+    descripcion: "Libro de mecánica cuántica con un enfoque físico, publicado por Cambridge University Press.",
+    enlaces: [{ etiqueta: "Ver en Cambridge University Press", url: "https://www.cambridge.org/core/books/quantum-mechanics/EDC2EFA0B46C4D3CC69DA183F24620E5" }],
+  },
+
   /* ---- ALGORITMOS CUÁNTICOS ---- */
+  {
+    id: "REC-QUBOLITE-01",
+    titulo: "QUBOLite",
+    autor: null,
+    tipo: "paper",
+    categorias: [CAT.ALGORITMOS],
+    ponenteRef: null,
+    descripcion: "Artículo técnico sobre QUBOLite, una herramienta/enfoque para trabajar con problemas QUBO en cómputo cuántico.",
+    enlaces: [{ etiqueta: "Leer artículo (arXiv)", url: "https://arxiv.org/abs/2509.21321" }],
+  },
+  {
+    id: "REC-VQNHE-01",
+    titulo: "Variational Quantum-Neural Hybrid Eigensolver",
+    autor: null,
+    tipo: "paper",
+    categorias: [CAT.ALGORITMOS, CAT.QUIMICA],
+    ponenteRef: null,
+    descripcion: "Propuesta de un solucionador de autovalores híbrido que combina circuitos cuánticos variacionales con redes neuronales.",
+    enlaces: [{ etiqueta: "Leer artículo (arXiv)", url: "https://arxiv.org/abs/2106.05105" }],
+  },
+  {
+    id: "REC-VQE-OVERVIEW-01",
+    titulo: "Overview of VQE",
+    autor: "PennyLane",
+    tipo: "link",
+    categorias: [CAT.ALGORITMOS, CAT.QUIMICA],
+    ponenteRef: null,
+    descripcion: "Tutorial introductorio de PennyLane sobre el solucionador de autovalores variacional (VQE).",
+    enlaces: [{ etiqueta: "Ver tutorial", url: "https://pennylane.ai/demos/tutorial_vqe/" }],
+  },
   {
     id: "REC-ALGOZOO-01",
     titulo: "Quantum Algorithm Zoo",
@@ -489,6 +547,59 @@ const recursos = [
     enlaces: [{ etiqueta: "Visitar sitio", url: "https://developer.nvidia.com/cuda-q?size=n_6_n&sort-field=featured&sort-direction=desc" }],
   },
 
+  {
+    id: "REC-CIFRADO-LORENZ-01",
+    titulo: "Cifrado cuántico de imágenes en color mediante un sistema hipercaótico de Lorenz en 4D y la transformada de Fibonacci",
+    autor: null,
+    tipo: "paper",
+    categorias: [CAT.SEGURIDAD],
+    ponenteRef: null,
+    descripcion: "Artículo sobre un esquema de cifrado cuántico de imágenes en color combinando un sistema hipercaótico de Lorenz 4D y la transformada de Fibonacci. Publicado en Scientific Reports.",
+    enlaces: [{ etiqueta: "Leer artículo", url: "https://www.nature.com/articles/s41598-025-25760-4" }],
+  },
+  {
+    id: "REC-CRIPTO-CAOS-01",
+    titulo: "Un marco criptográfico híbrido basado en el caos para comunicaciones seguras poscuánticas",
+    autor: null,
+    tipo: "paper",
+    categorias: [CAT.SEGURIDAD],
+    ponenteRef: null,
+    descripcion: "Propuesta de un marco criptográfico híbrido basado en sistemas caóticos, orientado a comunicaciones seguras en el contexto poscuántico.",
+    enlaces: [{ etiqueta: "Leer artículo (arXiv)", url: "https://arxiv.org/abs/2504.08618" }],
+  },
+
+  /* ---- INTELIGENCIA ARTIFICIAL Y MACHINE LEARNING ---- */
+  {
+    id: "REC-LLM-EXPLICACION-01",
+    titulo: "LLM: una explicación con un mínimo de matemáticas y tecnicismos",
+    autor: null,
+    tipo: "link",
+    categorias: [CAT.IA_ML],
+    ponenteRef: null,
+    descripcion: "Explicación accesible sobre el funcionamiento de los grandes modelos de lenguaje (LLM), pensada para quienes se están iniciando en el tema.",
+    enlaces: [{ etiqueta: "Leer artículo", url: "https://www.understandingai.org/p/grandes-modelos-de-lenguaje-llm-una?hide_intro_popup=true" }],
+  },
+  {
+    id: "REC-TEQPINN-01",
+    titulo: "Un marco entrenado e integrado basado en la física cuántica para sistemas de reacción-difusión multiespecie (TE–QPINN)",
+    autor: null,
+    tipo: "paper",
+    categorias: [CAT.IA_ML],
+    ponenteRef: null,
+    descripcion: "Propuesta de una red neuronal informada por la física (physics-informed) con base cuántica, aplicada a sistemas de reacción-difusión multiespecie.",
+    enlaces: [{ etiqueta: "Leer artículo (arXiv)", url: "https://arxiv.org/abs/2602.09291" }],
+  },
+  {
+    id: "REC-CONVOLUCION-01",
+    titulo: "¿Qué es una convolución?",
+    autor: null,
+    tipo: "video",
+    categorias: [CAT.IA_ML],
+    ponenteRef: null,
+    descripcion: "Video explicativo sobre el concepto de convolución, base para entender las redes neuronales convolucionales (clásicas y cuánticas).",
+    enlaces: [{ etiqueta: "Ver video", url: "https://www.youtube.com/watch?v=KuXjwB4LzSA" }],
+  },
+
   /* ---- COMUNICACIÓN Y SEGURIDAD ---- */
   {
     id: "PON-BALDE-01",
@@ -590,6 +701,16 @@ const recursos = [
     ponenteRef: null,
     descripcion: "Documento sobre el panorama de la computación cuántica en México.",
     enlaces: [{ etiqueta: "Ver documento", url: "https://drive.google.com/file/d/1HbdKvTa_y7GWRc967F6qmQmCbjJ586lj/view" }],
+  },
+  {
+    id: "REC-IA-CONSCIENTE-01",
+    titulo: "Conscious Artificial Intelligence and Biological Naturalism",
+    autor: null,
+    tipo: "paper",
+    categorias: [CAT.COMUNIDAD],
+    ponenteRef: null,
+    descripcion: "Artículo de discusión sobre la posibilidad de una inteligencia artificial consciente desde la perspectiva del naturalismo biológico. Publicado en Behavioral and Brain Sciences (Cambridge).",
+    enlaces: [{ etiqueta: "Leer artículo", url: "https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/conscious-artificial-intelligence-and-biological-naturalism/C9912A5BE9D806012E3C8B3AF612E39A" }],
   },
   {
     id: "REC-HACKATON-BUAP-01",
