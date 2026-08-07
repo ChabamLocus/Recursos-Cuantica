@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Recursos — Quinta Escuela de Cómputo Cuántico</title>
+<meta name="description" content="Recursos oficiales y de la comunidad para la Quinta Escuela de Cómputo Cuántico." />
+<link rel="stylesheet" href="css/style.css" />
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- Riel lateral de acceso rápido (desktop) -->
+  <nav class="rail" aria-label="Navegación principal">
+    <a href="#/" class="rail-logo" aria-label="Inicio">
+      <i data-lucide="atom"></i>
+    </a>
+    <button class="rail-btn" data-nav="/" aria-label="Inicio">
+      <i data-lucide="home"></i><span class="tip">Inicio</span>
+    </button>
+    <button class="rail-btn" data-nav="/oficiales" aria-label="Medios Oficiales">
+      <i data-lucide="landmark"></i><span class="tip">Medios Oficiales</span>
+    </button>
+    <button class="rail-btn" data-nav="/semana" aria-label="Semana de Curso">
+      <i data-lucide="calendar-days"></i><span class="tip">Semana de Curso</span>
+    </button>
+    <button class="rail-btn" data-nav="/ponentes" aria-label="Ponentes">
+      <i data-lucide="users"></i><span class="tip">Ponentes</span>
+    </button>
+    <button class="rail-btn" data-nav="/recursos" aria-label="Recursos">
+      <i data-lucide="library"></i><span class="tip">Recursos</span>
+    </button>
+    <div class="rail-spacer"></div>
+  </nav>
+
+  <div class="content">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <nav class="breadcrumb" id="breadcrumb" aria-label="Ruta de navegación"></nav>
+        <div class="searchbox">
+          <i data-lucide="search"></i>
+          <input type="text" id="searchInput" placeholder="Buscar recursos, ponentes, archivos…" autocomplete="off" />
+        </div>
+      </div>
+    </header>
+
+    <main class="page" id="page"></main>
+
+    <footer class="site-footer">
+      <span class="foot-left">Quinta Escuela de Cómputo Cuántico · LAPI UNAM</span>
+      <a class="initiatives-link" id="iniciativasLink" href="#" target="_self">
+        <i data-lucide="sprout"></i>
+        <span>Iniciativas</span>
+      </a>
+    </footer>
+  </div>
+</div>
+
+<!-- Barra inferior de navegación (mobile) -->
+<nav class="mobile-tabbar" aria-label="Navegación móvil">
+  <button data-nav="/"><i data-lucide="home"></i>Inicio</button>
+  <button data-nav="/oficiales"><i data-lucide="landmark"></i>Oficiales</button>
+  <button data-nav="/semana"><i data-lucide="calendar-days"></i>Semana</button>
+  <button data-nav="/ponentes"><i data-lucide="users"></i>Ponentes</button>
+  <button data-nav="/recursos"><i data-lucide="library"></i>Recursos</button>
+</nav>
+
+<!-- Modal de detalle de recurso -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="Cerrar">
+      <i data-lucide="x"></i>
+    </button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+</body>
+</html>
